@@ -10,9 +10,15 @@ function StylizedBag() {
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Gentle, elegant rotation
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.15;
-      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
+      // Calculate scroll position (safe for SSR)
+      const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+      
+      // Base gentle rotation + scroll-based rotation
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.15 + (scrollY * 0.003);
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1 + (scrollY * 0.001);
+      
+      // Parallax effect: move bag slightly down as user scrolls
+      groupRef.current.position.y = -(scrollY * 0.002);
     }
   });
 

@@ -17,9 +17,10 @@ export default function AnimatedCollectionGrid({ collections }: { collections: C
       {collections.map((collection, index) => (
         <motion.div
           key={collection.id}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: index * 0.2 }}
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: (index % 2) * 0.2 }}
         >
           <Link href={`/collections/${collection.slug}`} className="group relative block h-[500px] overflow-hidden rounded-3xl glass-card">
             <div className="absolute inset-0 z-0">

@@ -21,9 +21,10 @@ export default function AnimatedProductGrid({ products }: { products: Product[] 
         return (
           <motion.div 
             key={product.id} 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
             whileHover={{ y: -10 }}
             className="group flex flex-col items-center glass-card p-6 rounded-3xl relative overflow-hidden"
           >
