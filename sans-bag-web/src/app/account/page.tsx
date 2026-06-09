@@ -1,40 +1,62 @@
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 
-export default async function AccountPage() {
+export default async function AccountDashboard() {
   const session = await getServerSession(authOptions);
-
-  if (!session) {
-    redirect("/login");
+  
+  if (!session?.user) {
+    redirect('/login');
   }
 
+  const userId = (session.user as any).id;
+
+  const recentOrders = await prisma.order.findMany({
+    where: { user_id: userId },
+    orderBy: { created_at: 'desc' },
+    take: 3,
+  });
+
   return (
-    <div className="container mx-auto px-4 py-16 md:px-8">
-      <h1 className="text-4xl font-bold tracking-widest text-gold mb-12 uppercase">My Account</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div className="md:col-span-1">
-          <div className="bg-gray-900 border border-gray-800 p-6 rounded-sm">
-            <h2 className="text-xl font-medium text-white mb-2">{session.user?.name}</h2>
-            <p className="text-gray-400 mb-6">{session.user?.email}</p>
-            <p className="text-sm font-bold tracking-widest text-gold uppercase">Role: {(session.user as any)?.role}</p>
-            
-            <div className="mt-8 border-t border-gray-800 pt-6 space-y-4">
-              <a href="/api/auth/signout" className="block text-gray-400 hover:text-white transition-colors">Sign Out</a>
-              {(session.user as any)?.role === 'ADMIN' && (
-                <a href="/admin" className="block text-gold hover:text-gold-light transition-colors">Admin Dashboard</a>
-              )}
-            </div>
+    <div className="space-y-8">
+      <div className="glass-card p-8 rounded-2xl border border-glass-border shadow-lg">
+        <h1 className="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-2">
+          Welcome, {session.user.name || 'Guest'}
+        </h1>
+        <p className="text-gray-400">View your digital inventory and physical delivery status.</p>
+      </div>
+
+      <div className="glass-card p-8 rounded-2xl border border-glass-border shadow-lg relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-neon-cyan/10 rounded-full blur-[50px] pointer-events-none"></div>
+        <h2 className="text-xl font-bold text-white mb-6 tracking-widest uppercase flex items-center">
+          <span className="w-2 h-2 rounded-full bg-neon-cyan mr-3 glow-cyan"></span>
+          Recent Transactions
+        </h2>
+
+        {recentOrders.length === 0 ? (
+          <p className="text-gray-400">No recent transactions found.</p>
+        ) : (
+          <div className="space-y-4 relative z-10">
+            {recentOrders.map(order => (
+              <div key={order.id} className="flex justify-between items-center p-4 bg-black/40 border border-gray-800 rounded-xl">
+                <div>
+                  <p className="text-sm text-gray-400 font-mono mb-1">{order.id}</p>
+                  <p className="text-white font-bold">{order.total.toFixed(2)} GHS</p>
+                </div>
+                <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${order.status === 'PAID' ? 'bg-green-500/20 text-green-400 border border-green-500/50' : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/50'}`}>
+                  {order.status}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-        
-        <div className="md:col-span-2">
-          <h3 className="text-2xl font-medium text-white mb-6 uppercase tracking-wider">Order History</h3>
-          <div className="bg-black border border-gray-800 p-8 text-center text-gray-500 rounded-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-4 opacity-50"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <p>You haven't placed any orders yet.</p>
-          </div>
+        )}
+
+        <div className="mt-6 relative z-10">
+          <Link href="/account/orders" className="text-neon-cyan hover:text-white transition-colors text-sm font-bold tracking-widest uppercase glow-cyan">
+            View All History →
+          </Link>
         </div>
       </div>
     </div>

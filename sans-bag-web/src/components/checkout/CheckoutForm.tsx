@@ -25,12 +25,7 @@ export default function CheckoutForm() {
 
   const initializePayment = usePaystackPayment(config);
 
-  const onSuccess = async () => {
-    await createOrder({
-      reference: config.reference,
-      amount: total,
-      items: items.map(item => ({ id: item.id, quantity: item.quantity, price: item.price }))
-    });
+  const onSuccess = () => {
     clearCart();
     router.push('/order-confirmation?ref=' + config.reference);
   };
@@ -39,9 +34,18 @@ export default function CheckoutForm() {
     console.log('Payment closed.');
   };
 
-  const handleCheckout = (e: React.FormEvent) => {
+  const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !name || !address) return alert("Please fill all details");
+    
+    // Create PENDING order securely on backend
+    await createOrder({
+      reference: config.reference,
+      amount: total,
+      items: items.map(item => ({ id: item.id, quantity: item.quantity, price: item.price }))
+    });
+
+    // Initialize Paystack modal
     initializePayment({ onSuccess, onClose });
   };
 

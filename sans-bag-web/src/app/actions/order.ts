@@ -28,10 +28,11 @@ export async function createOrder(data: {
 
   const order = await prisma.order.create({
     data: {
+      id: data.reference,
       user_id: userId,
       total: data.amount,
       payment_method: 'Paystack',
-      status: 'PAID',
+      status: 'PENDING',
       items: {
         create: data.items.map(item => ({
           product_id: item.id,

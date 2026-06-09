@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
+import AuthProvider from "@/components/providers/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,10 +58,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-background text-foreground`}
     >
       <body className="min-h-full flex flex-col relative">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <CartDrawer />
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </AuthProvider>
         
         {/* Google Analytics Placeholder */}
         {process.env.NEXT_PUBLIC_GA_ID && (
