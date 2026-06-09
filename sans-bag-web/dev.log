@@ -1,0 +1,28 @@
+
+> sans-bag-web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.8.107:3000
+- Environments: .env
+✓ Ready in 980ms
+
+ GET /sitemap.xml 200 in 6.0s (next.js: 1090ms, application-code: 4.9s)
+○ Compiling / ...
+ GET / 200 in 4.9s (next.js: 4.3s, application-code: 607ms)
+ GET /products 200 in 1377ms (next.js: 574ms, application-code: 802ms)
+[browser] Image with src "/bag-mockup.jpeg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes (file:///Volumes/QUADEM/Personal/VIBE CODING/SAN collection/sans-bag-web/.next/dev/static/chunks/node_modules_next_dist_1ybzpk2._.js:2477:13)
+[next-auth][warn][NEXTAUTH_URL] 
+https://next-auth.js.org/warnings#nextauth_url
+[next-auth][warn][NO_SECRET] 
+https://next-auth.js.org/warnings#no_secret
+ GET /account 200 in 1171ms (next.js: 1105ms, application-code: 66ms)
+ GET /login 200 in 731ms (next.js: 670ms, application-code: 61ms)
+ GET /login 200 in 42ms (next.js: 4ms, application-code: 38ms)
+ GET /checkout 200 in 913ms (next.js: 871ms, application-code: 42ms)
+ GET /about 404 in 609ms (next.js: 568ms, application-code: 41ms)
+ GET /about 404 in 107ms (next.js: 5ms, application-code: 102ms)
+ GET /about 404 in 12ms (next.js: 4ms, application-code: 8ms)
+ GET /about 404 in 96ms (next.js: 5ms, application-code: 91ms)
+[?25h

@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  password_hash String
+  role          String    @default("CUSTOMER")
+  created_at    DateTime  @default(now())
+  orders        Order[]
+  addresses     Address[]
+}
+
+model Category {
+  id        String     @id @default(uuid())
+  name      String
+  slug      String     @unique
+  parent_id String?
+  parent    Category?  @relation("CategoryHierarchy", fields: [parent_id], references: [id])
+  children  Category[] @relation("CategoryHierarchy")
+  products  Product[]
+}
+
+model Collection {
+  id           String    @id @default(uuid())
+  name         String
+  slug         String    @unique
+  banner_image String?
+  products     Product[] @relation("CollectionProducts")
+}
+
+model Product {
+  id          String       @id @default(uuid())
+  name        String
+  slug        String       @unique
+  description String?
+  price       Float
+  stock       Int          @default(0)
+  images      String[]
+  category_id String?
+  category    Category?    @relation(fields: [category_id], references: [id])
+  collections Collection[] @relation("CollectionProducts")
+  order_items OrderItem[]
+}
+
+model Order {
+  id             String      @id @default(uuid())
+  user_id        String
+  user           User        @relation(fields: [user_id], references: [id])
+  status         String      @default("PENDING")
+  total          Float
+  payment_method String?
+  created_at     DateTime    @default(now())
+  items          OrderItem[]
+}
+
+model OrderItem {
+  id         String  @id @default(uuid())
+  order_id   String
+  order      Order   @relation(fields: [order_id], references: [id])
+  product_id String
+  product    Product @relation(fields: [product_id], references: [id])
+  quantity   Int
+  unit_price Float
+}
+
+model Address {
+  id      String @id @default(uuid())
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+  line1   String
+  city    String
+  region  String
+  country String
+}
+
+model Coupon {
+  id            String    @id @default(uuid())
+  code          String    @unique
+  discount_type String
+  value         Float
+  expiry        DateTime?
+  usage_limit   Int?
+}
