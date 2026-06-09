@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function AdminProducts() {
   const products = await prisma.product.findMany({
@@ -19,9 +20,9 @@ export default async function AdminProducts() {
           </h1>
           <p className="text-sm text-gray-400">Manage your premium product catalog.</p>
         </div>
-        <button className="px-6 py-3 bg-white text-black font-bold tracking-widest uppercase text-xs rounded-lg hover:bg-gray-200 transition-colors">
+        <Link href="/admin/products/new" className="px-6 py-3 bg-white text-black font-bold tracking-widest uppercase text-xs rounded-lg hover:bg-gray-200 transition-colors">
           + Add Asset
-        </button>
+        </Link>
       </div>
 
       <div className="glass-card rounded-2xl border border-glass-border overflow-hidden">
