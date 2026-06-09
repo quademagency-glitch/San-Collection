@@ -10,30 +10,26 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
              <span className="text-2xl font-bold tracking-widest text-white mb-4 block uppercase drop-shadow-md">SAN'S BAG</span>
              <p className="text-sm text-gray-400 max-w-sm leading-relaxed">
-               Premium curated fashion collections and luxury bags. Fully realized in the decentralized digital space.
+               Premium curated fashion collections and luxury bags. Designed for elegance and style.
              </p>
           </div>
           <div>
-            <h3 className="mb-6 text-sm font-bold text-neon-cyan tracking-wider uppercase glow-cyan">Network</h3>
+            <h3 className="mb-6 text-sm font-bold text-neon-cyan tracking-wider uppercase glow-cyan">Shop</h3>
             <ul className="space-y-4 text-sm text-gray-400">
               <li><Link href="/collections" className="hover:text-white transition-colors">All Collections</Link></li>
-              <li><Link href="/products" className="hover:text-white transition-colors">Digital Assets</Link></li>
+              <li><Link href="/products" className="hover:text-white transition-colors">New Arrivals</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="mb-6 text-sm font-bold text-neon-purple tracking-wider uppercase glow-purple">Support Protocol</h3>
+            <h3 className="mb-6 text-sm font-bold text-neon-purple tracking-wider uppercase glow-purple">Support</h3>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact Bridge</Link></li>
-              <li><Link href="/faq" className="hover:text-white transition-colors">Documentation</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link href="/faq" className="hover:text-white transition-colors">FAQs</Link></li>
             </ul>
           </div>
         </div>
         <div className="mt-16 border-t border-glass-border pt-8 text-center flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 uppercase tracking-widest">
-          <p>&copy; {new Date().getFullYear()} San's Bag Protocol. All rights reserved.</p>
-          <div className="flex items-center mt-4 md:mt-0">
-            <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-            System Online
-          </div>
+          <p>&copy; {new Date().getFullYear()} San's Bag. All rights reserved.</p>
         </div>
       </div>
     </footer>

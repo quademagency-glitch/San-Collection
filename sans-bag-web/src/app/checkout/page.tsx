@@ -41,17 +41,17 @@ export default function CheckoutPage() {
               
               <h3 className="text-xl font-medium text-white mb-6 tracking-widest uppercase flex items-center">
                 <span className="w-2 h-2 rounded-full bg-neon-cyan mr-3 glow-cyan"></span>
-                Transaction Protocol
+                Order Summary
               </h3>
               
               <div className="prose prose-invert text-gray-400 text-sm leading-relaxed mb-6">
-                <p>Your digital assets are currently reserved on the network.</p>
-                <p>Complete your transaction using our secure Paystack gateway (supporting Mobile Money & Cards) to finalize the smart contract and secure your physical delivery.</p>
+                <p>Your premium items are currently reserved.</p>
+                <p>Complete your transaction using our secure Paystack gateway (supporting Mobile Money & Cards) to finalize your order and secure your physical delivery.</p>
               </div>
 
               <div className="mt-8 pt-6 border-t border-glass-border">
                 <div className="flex items-center justify-between text-xs font-mono text-gray-500 uppercase tracking-widest">
-                  <span>Network</span>
+                  <span>Connection</span>
                   <span className="text-neon-cyan glow-cyan">Secure / Encrypted</span>
                 </div>
               </div>

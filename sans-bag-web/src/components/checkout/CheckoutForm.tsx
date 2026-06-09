@@ -46,7 +46,7 @@ export default function CheckoutForm() {
   };
 
   if (items.length === 0) {
-    return <p className="text-gray-400">Your digital asset inventory is empty.</p>;
+    return <p className="text-gray-400">Your shopping bag is empty.</p>;
   }
 
   return (
@@ -54,7 +54,7 @@ export default function CheckoutForm() {
       <div>
         <h3 className="text-xl font-medium text-white mb-6 tracking-widest uppercase flex items-center">
           <span className="w-2 h-2 rounded-full bg-neon-purple mr-3 glow-purple"></span>
-          Identity
+          Contact Information
         </h3>
         <div className="space-y-4">
           <input 
@@ -79,7 +79,7 @@ export default function CheckoutForm() {
       <div>
         <h3 className="text-xl font-medium text-white mb-6 mt-10 tracking-widest uppercase flex items-center">
           <span className="w-2 h-2 rounded-full bg-neon-purple mr-3 glow-purple"></span>
-          Physical Location
+          Shipping Address
         </h3>
         <textarea 
           placeholder="Full Address (Street, City, Region)" 
@@ -92,7 +92,7 @@ export default function CheckoutForm() {
 
       <div className="border-t border-glass-border pt-8 mt-10">
         <div className="flex justify-between items-center text-xl font-bold text-white mb-8">
-          <span className="tracking-widest uppercase text-sm text-gray-400">Total Value</span>
+          <span className="tracking-widest uppercase text-sm text-gray-400">Total Amount</span>
           <span className="text-3xl text-gold font-mono">{total.toFixed(2)} GHS</span>
         </div>
         <button 
@@ -100,7 +100,7 @@ export default function CheckoutForm() {
           className="w-full py-5 bg-gradient-to-r from-neon-purple to-neon-cyan text-white font-bold tracking-widest hover:opacity-90 transition-opacity rounded-xl uppercase shadow-lg shadow-neon-purple/20 relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          <span className="relative z-10">AUTHORIZE SMART CONTRACT</span>
+          <span className="relative z-10">COMPLETE SECURE PURCHASE</span>
         </button>
       </div>
     </form>

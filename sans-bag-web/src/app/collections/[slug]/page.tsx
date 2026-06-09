@@ -52,7 +52,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
         
         <div className="relative z-20 flex flex-col items-center text-center px-4 glass p-10 rounded-3xl border border-glass-border">
           <h1 className="text-4xl md:text-6xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-neon-cyan to-white mb-4 uppercase drop-shadow-lg text-glow">{collection.name}</h1>
-          <p className="text-lg text-gray-300 max-w-2xl drop-shadow-md">Explore our exclusive {collection.name} assets.</p>
+          <p className="text-lg text-gray-300 max-w-2xl drop-shadow-md">Explore our exclusive {collection.name} collection.</p>
         </div>
       </section>
 

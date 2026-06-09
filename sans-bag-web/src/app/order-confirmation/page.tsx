@@ -20,12 +20,12 @@ export default async function OrderConfirmationPage({
           
           <h1 className="text-4xl md:text-5xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-6 uppercase">Transaction Confirmed</h1>
           <p className="text-lg text-gray-400 mb-10 leading-relaxed">
-            Your asset transfer was successful. Your premium order is now being processed and prepared for shipping.
+            Your purchase was successful. Your premium order is now being processed and prepared for shipping.
           </p>
           
           {ref && (
             <div className="bg-black/50 border border-glass-border p-6 rounded-2xl mb-12 inline-block w-full max-w-md">
-              <p className="text-xs text-neon-cyan uppercase tracking-widest mb-3 glow-cyan">Network Reference ID</p>
+              <p className="text-xs text-neon-cyan uppercase tracking-widest mb-3 glow-cyan">Transaction Reference</p>
               <p className="text-2xl font-mono text-white tracking-widest">{ref}</p>
             </div>
           )}
@@ -35,7 +35,7 @@ export default async function OrderConfirmationPage({
               href="/collections"
               className="inline-block px-10 py-5 border-2 border-neon-cyan text-neon-cyan font-bold tracking-widest hover:bg-neon-cyan hover:text-black hover:glow-cyan transition-all duration-300 rounded-full uppercase text-sm"
             >
-              Return to Gallery
+              Continue Shopping
             </Link>
           </div>
         </div>

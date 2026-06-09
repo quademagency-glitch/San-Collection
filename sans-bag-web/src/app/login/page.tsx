@@ -32,12 +32,12 @@ export default function LoginPage() {
       >
         <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-[50px]"></div>
 
-        <h1 className="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 text-center mb-2 uppercase drop-shadow-sm">Authenticate</h1>
-        <p className="text-center text-sm text-gray-500 tracking-widest uppercase mb-10">Access your digital inventory</p>
+        <h1 className="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 text-center mb-2 uppercase drop-shadow-sm">Welcome Back</h1>
+        <p className="text-center text-sm text-gray-500 tracking-widest uppercase mb-10">Access your account</p>
         
         <form onSubmit={handleLogin} className="space-y-6 relative z-10">
           <div>
-            <label className="block text-xs font-bold text-neon-cyan mb-2 uppercase tracking-widest glow-cyan">Network ID / Email</label>
+            <label className="block text-xs font-bold text-neon-cyan mb-2 uppercase tracking-widest glow-cyan">Email Address</label>
             <input 
               type="email" 
               value={email}
@@ -47,7 +47,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <label className="block text-xs font-bold text-neon-cyan mb-2 uppercase tracking-widest glow-cyan">Passphrase</label>
+            <label className="block text-xs font-bold text-neon-cyan mb-2 uppercase tracking-widest glow-cyan">Password</label>
             <input 
               type="password" 
               value={password}
@@ -58,13 +58,13 @@ export default function LoginPage() {
           </div>
           
           <button type="submit" className="w-full py-4 mt-8 bg-gradient-to-r from-neon-cyan to-blue-500 text-black font-bold tracking-widest hover:opacity-90 transition-opacity rounded-xl uppercase shadow-lg shadow-neon-cyan/20">
-            INITIALIZE SESSION
+            SIGN IN
           </button>
         </form>
 
         <div className="mt-8 flex items-center justify-between relative z-10">
           <span className="border-b border-glass-border w-1/5"></span>
-          <span className="text-xs text-gray-500 uppercase tracking-widest">or bridge via</span>
+          <span className="text-xs text-gray-500 uppercase tracking-widest">or continue with</span>
           <span className="border-b border-glass-border w-1/5"></span>
         </div>
 
@@ -77,7 +77,7 @@ export default function LoginPage() {
         </button>
 
         <p className="mt-10 text-center text-sm text-gray-400 relative z-10 tracking-wide">
-          No identity found? <Link href="/register" className="text-neon-cyan hover:underline glow-cyan font-semibold">Mint Profile</Link>
+          Don't have an account? <Link href="/register" className="text-neon-cyan hover:underline glow-cyan font-semibold">Register here</Link>
         </p>
       </motion.div>
     </div>

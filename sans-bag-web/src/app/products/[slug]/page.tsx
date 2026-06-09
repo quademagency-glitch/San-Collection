@@ -58,7 +58,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-[80px] pointer-events-none"></div>
             
             <div className="px-3 py-1 mb-6 inline-flex w-fit rounded-full border border-neon-purple/50 bg-neon-purple/10 text-neon-purple text-xs font-bold tracking-widest uppercase glow-purple">
-              Verified Asset
+              Premium Handcrafted
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4 uppercase">{product.name}</h1>
@@ -69,7 +69,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </div>
             
             <div className="mb-12">
-              <h3 className="text-sm font-semibold tracking-wider text-neon-cyan uppercase mb-6 border-b border-glass-border pb-3">Asset Properties</h3>
+              <h3 className="text-sm font-semibold tracking-wider text-neon-cyan uppercase mb-6 border-b border-glass-border pb-3">Features</h3>
               <ul className="space-y-4">
                 {['Premium quality materials', "Signature San's Bag branding", 'Durable and elegant design'].map((trait, i) => (
                   <li key={i} className="flex items-center text-gray-400">

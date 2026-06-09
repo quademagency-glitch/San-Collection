@@ -13,7 +13,7 @@ export default async function ProductsPage() {
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="text-center mb-20">
           <h1 className="text-5xl md:text-6xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500 uppercase drop-shadow-lg mb-6">
-            Digital Assets
+            Our Collection
           </h1>
           <div className="w-24 h-1 bg-neon-purple mx-auto rounded-full glow-purple"></div>
         </div>
