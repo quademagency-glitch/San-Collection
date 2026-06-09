@@ -51,7 +51,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
 
       <section className="container mx-auto px-4 py-24 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {collectionProducts.map((product) => (
+          {collectionProducts.map((product: any) => (
             <div key={product.id} className="group flex flex-col">
               <Link href={`/products/${product.slug}`} className="block relative h-80 w-full mb-4 overflow-hidden bg-gray-900 border border-gray-800">
                 <Image src={product.image} alt={product.name} fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
