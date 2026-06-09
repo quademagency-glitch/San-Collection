@@ -1,31 +1,24 @@
 import { prisma } from '@/lib/prisma';
-import Image from 'next/image';
-import Link from 'next/link';
-import AddToCartButton from '@/components/cart/AddToCartButton';
+import AnimatedProductGrid from '@/components/ui/AnimatedProductGrid';
 
 export default async function ProductsPage() {
   const products = await prisma.product.findMany();
 
   return (
-    <div className="container mx-auto px-4 py-16 md:px-8">
-      <h1 className="text-4xl font-bold tracking-widest text-gold text-center mb-16 uppercase">All Products</h1>
+    <div className="relative min-h-screen bg-background overflow-hidden py-24">
+      {/* Subtle Web3 ambient glows */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-neon-purple/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {products.map((product) => {
-          const mainImage = product.images?.[0] || '/bag-mockup.jpeg';
-          return (
-          <div key={product.id} className="group flex flex-col">
-            <Link href={`/products/${product.slug}`} className="block relative h-80 w-full mb-4 overflow-hidden bg-gray-900 border border-gray-800">
-              <Image src={mainImage} alt={product.name} fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
-            </Link>
-            <Link href={`/products/${product.slug}`}>
-              <h3 className="text-lg tracking-wider text-foreground group-hover:text-gold transition-colors">{product.name}</h3>
-            </Link>
-            <p className="text-gray-400 mt-1">${product.price.toFixed(2)}</p>
-            <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, image: mainImage }} />
-          </div>
-        )})}
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="text-center mb-20">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500 uppercase drop-shadow-lg mb-6">
+            Digital Assets
+          </h1>
+          <div className="w-24 h-1 bg-neon-purple mx-auto rounded-full glow-purple"></div>
+        </div>
+        
+        <AnimatedProductGrid products={products} />
       </div>
     </div>
   );

@@ -1,9 +1,8 @@
 import { prisma } from '@/lib/prisma';
 import Image from 'next/image';
-import Link from 'next/link';
-import AddToCartButton from '@/components/cart/AddToCartButton';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import AnimatedProductGrid from '@/components/ui/AnimatedProductGrid';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -35,36 +34,30 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
     notFound();
   }
 
-  const collectionProducts = collection.products;
+  // Ensure products conform to the expected AnimatedProductGrid schema
+  const collectionProducts = collection.products.map(p => ({
+    ...p,
+    images: [(p as any).image || '/bag-mockup.jpeg']
+  }));
 
   return (
-    <div>
-      <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden bg-black">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      {/* 3D Web3 Hero Background for Collection */}
+      <section className="relative w-full h-[60vh] flex flex-col items-center justify-center overflow-hidden border-b border-glass-border">
         <div className="absolute inset-0 z-0">
-          <Image src={collection.banner_image || '/bag-mockup.jpeg'} alt={collection.name} fill className="object-cover opacity-50" priority />
+          <Image src={collection.banner_image || '/bag-mockup.jpeg'} alt={collection.name} fill className="object-cover opacity-30" priority />
         </div>
-        <div className="relative z-10 flex flex-col items-center text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-widest text-gold mb-4 uppercase drop-shadow-lg">{collection.name}</h1>
-          <p className="text-lg text-gray-200 max-w-2xl drop-shadow-md">Explore our exclusive {collection.name} collection.</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[100px] pointer-events-none z-10"></div>
+        
+        <div className="relative z-20 flex flex-col items-center text-center px-4 glass p-10 rounded-3xl border border-glass-border">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white via-neon-cyan to-white mb-4 uppercase drop-shadow-lg text-glow">{collection.name}</h1>
+          <p className="text-lg text-gray-300 max-w-2xl drop-shadow-md">Explore our exclusive {collection.name} assets.</p>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-24 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {collectionProducts.map((product: any) => (
-            <div key={product.id} className="group flex flex-col">
-              <Link href={`/products/${product.slug}`} className="block relative h-80 w-full mb-4 overflow-hidden bg-gray-900 border border-gray-800">
-                <Image src={product.image} alt={product.name} fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10"></div>
-              </Link>
-              <Link href={`/products/${product.slug}`}>
-                <h3 className="text-lg tracking-wider text-foreground group-hover:text-gold transition-colors">{product.name}</h3>
-              </Link>
-              <p className="text-gray-400 mt-1">${product.price.toFixed(2)}</p>
-              <AddToCartButton product={product} />
-            </div>
-          ))}
-        </div>
+      <section className="container mx-auto px-6 py-24 md:px-12 relative z-20">
+        <AnimatedProductGrid products={collectionProducts as any} />
       </section>
     </div>
   );

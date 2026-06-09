@@ -46,20 +46,23 @@ export default function CheckoutForm() {
   };
 
   if (items.length === 0) {
-    return <p className="text-gray-400">Your cart is empty.</p>;
+    return <p className="text-gray-400">Your digital asset inventory is empty.</p>;
   }
 
   return (
-    <form onSubmit={handleCheckout} className="space-y-6">
+    <form onSubmit={handleCheckout} className="space-y-8">
       <div>
-        <h3 className="text-xl font-medium text-white mb-4">Contact Information</h3>
+        <h3 className="text-xl font-medium text-white mb-6 tracking-widest uppercase flex items-center">
+          <span className="w-2 h-2 rounded-full bg-neon-purple mr-3 glow-purple"></span>
+          Identity
+        </h3>
         <div className="space-y-4">
           <input 
             type="email" 
             placeholder="Email Address" 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-black border border-gray-800 rounded-sm p-3 text-white focus:border-gold focus:outline-none"
+            className="w-full bg-black/40 border border-glass-border rounded-xl p-4 text-white placeholder-gray-500 focus:border-neon-purple focus:ring-1 focus:ring-neon-purple focus:outline-none transition-all duration-300"
             required
           />
           <input 
@@ -67,33 +70,37 @@ export default function CheckoutForm() {
             placeholder="Full Name" 
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full bg-black border border-gray-800 rounded-sm p-3 text-white focus:border-gold focus:outline-none"
+            className="w-full bg-black/40 border border-glass-border rounded-xl p-4 text-white placeholder-gray-500 focus:border-neon-purple focus:ring-1 focus:ring-neon-purple focus:outline-none transition-all duration-300"
             required
           />
         </div>
       </div>
 
       <div>
-        <h3 className="text-xl font-medium text-white mb-4 mt-8">Shipping Address</h3>
+        <h3 className="text-xl font-medium text-white mb-6 mt-10 tracking-widest uppercase flex items-center">
+          <span className="w-2 h-2 rounded-full bg-neon-purple mr-3 glow-purple"></span>
+          Physical Location
+        </h3>
         <textarea 
           placeholder="Full Address (Street, City, Region)" 
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          className="w-full bg-black border border-gray-800 rounded-sm p-3 text-white focus:border-gold focus:outline-none h-32"
+          className="w-full bg-black/40 border border-glass-border rounded-xl p-4 text-white placeholder-gray-500 focus:border-neon-purple focus:ring-1 focus:ring-neon-purple focus:outline-none transition-all duration-300 h-32 resize-none"
           required
         />
       </div>
 
-      <div className="border-t border-gray-800 pt-6 mt-8">
-        <div className="flex justify-between text-xl font-bold text-white mb-6">
-          <span>Total</span>
-          <span className="text-gold">GHS {total.toFixed(2)}</span>
+      <div className="border-t border-glass-border pt-8 mt-10">
+        <div className="flex justify-between items-center text-xl font-bold text-white mb-8">
+          <span className="tracking-widest uppercase text-sm text-gray-400">Total Value</span>
+          <span className="text-3xl text-gold font-mono">{total.toFixed(2)} GHS</span>
         </div>
         <button 
           type="submit"
-          className="w-full py-4 bg-gold text-black font-bold tracking-widest hover:bg-gold-light transition-colors rounded-sm"
+          className="w-full py-5 bg-gradient-to-r from-neon-purple to-neon-cyan text-white font-bold tracking-widest hover:opacity-90 transition-opacity rounded-xl uppercase shadow-lg shadow-neon-purple/20 relative overflow-hidden group"
         >
-          PAY WITH PAYSTACK
+          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          <span className="relative z-10">AUTHORIZE SMART CONTRACT</span>
         </button>
       </div>
     </form>
