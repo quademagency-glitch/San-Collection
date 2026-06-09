@@ -30,9 +30,9 @@ export default function Home() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="px-4 py-1 mb-6 rounded-full border border-neon-cyan/50 bg-neon-cyan/10 text-neon-cyan text-xs font-bold tracking-widest uppercase glow-cyan"
+              className="px-4 py-1 mb-6 rounded-full border border-gold/50 bg-gold/10 text-gold text-xs font-bold tracking-widest uppercase glow-gold"
             >
-              Web3 Exclusive Collection
+              Premium Handcrafted Bags
             </motion.div>
             
             <h1 className="text-5xl md:text-7xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold-light mb-6 uppercase">
