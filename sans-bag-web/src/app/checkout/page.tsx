@@ -1,4 +1,10 @@
-import CheckoutForm from '@/components/checkout/CheckoutForm';
+"use client";
+
+import dynamic from 'next/dynamic';
+
+const CheckoutForm = dynamic(() => import('@/components/checkout/CheckoutForm'), {
+  ssr: false,
+});
 
 export default function CheckoutPage() {
   return (
