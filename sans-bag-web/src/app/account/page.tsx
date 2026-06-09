@@ -11,6 +11,10 @@ export default async function AccountDashboard() {
     redirect('/login');
   }
 
+  if ((session.user as any).role === 'ADMIN') {
+    redirect('/admin');
+  }
+
   const userId = (session.user as any).id;
 
   const recentOrders = await prisma.order.findMany({
