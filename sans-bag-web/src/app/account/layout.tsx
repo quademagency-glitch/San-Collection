@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Link from "next/link";
+import { SignOutButton } from "@/components/ui/SignOutButton";
 import { signOut } from "next-auth/react";
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
@@ -35,14 +36,11 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
           <div className="glass-card p-6 rounded-2xl border border-glass-border shadow-lg">
             <h2 className="text-xl font-bold text-white mb-6 tracking-widest uppercase">My Account</h2>
             <nav className="flex flex-col space-y-4">
-              <Link href="/account" className="text-gray-400 hover:text-gold transition-colors text-sm uppercase tracking-wider">Dashboard</Link>
-              <Link href="/account/orders" className="text-gray-400 hover:text-gold transition-colors text-sm uppercase tracking-wider">Order History</Link>
-              <button 
-                onClick={() => signOut({ callbackUrl: '/' })}
-                className="text-left text-gray-400 hover:text-red-400 transition-colors text-sm uppercase tracking-wider pt-4 border-t border-glass-border"
-              >
-                Sign Out
-              </button>
+              <Link href="/account" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Overview</Link>
+              <Link href="/account/orders" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Orders</Link>
+              <div className="pt-4 border-t border-glass-border mt-4">
+                <SignOutButton />
+              </div>
             </nav>
           </div>
         </aside>

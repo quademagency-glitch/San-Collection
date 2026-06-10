@@ -12,20 +12,20 @@ export async function createDiscount(formData: FormData) {
   }
 
   const code = formData.get("code") as string;
-  const type = formData.get("type") as "PERCENTAGE" | "FIXED";
+  const discount_type = formData.get("type") as string;
   const value = parseFloat(formData.get("value") as string);
   const max_usesRaw = formData.get("max_uses") as string;
-  const max_uses = max_usesRaw ? parseInt(max_usesRaw, 10) : null;
+  const usage_limit = max_usesRaw ? parseInt(max_usesRaw, 10) : null;
   const expires_atRaw = formData.get("expires_at") as string;
-  const expires_at = expires_atRaw ? new Date(expires_atRaw) : null;
+  const expiry = expires_atRaw ? new Date(expires_atRaw) : null;
 
   await prisma.coupon.create({
     data: {
       code: code.toUpperCase(),
-      type,
+      discount_type,
       value,
-      max_uses,
-      expires_at
+      usage_limit,
+      expiry
     }
   });
 

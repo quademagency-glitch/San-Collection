@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { SignOutButton } from "@/components/ui/SignOutButton";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
@@ -28,6 +29,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <Link href="/admin/collections" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Collections</Link>
               <Link href="/admin/discounts" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Discounts</Link>
               <Link href="/admin/orders" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Transactions</Link>
+              <div className="pt-4 border-t border-glass-border mt-4">
+                <SignOutButton />
+              </div>
             </nav>
           </div>
         </aside>

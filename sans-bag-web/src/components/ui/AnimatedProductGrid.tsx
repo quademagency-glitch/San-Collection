@@ -10,6 +10,7 @@ type Product = {
   slug: string;
   name: string;
   price: number;
+  compare_at_price?: number | null;
   images: string[];
 };
 

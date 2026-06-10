@@ -2,9 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 export default async function AdminDiscounts() {
-  const coupons = await prisma.coupon.findMany({
-    orderBy: { created_at: 'desc' }
-  });
+  const coupons = await prisma.coupon.findMany();
 
   return (
     <div className="space-y-8">
@@ -33,22 +31,21 @@ export default async function AdminDiscounts() {
             </thead>
             <tbody className="divide-y divide-glass-border">
               {coupons.map((coupon) => {
-                const isExpired = coupon.expires_at && new Date() > coupon.expires_at;
-                const isUsedUp = coupon.max_uses && coupon.times_used >= coupon.max_uses;
-                const isActive = coupon.is_active && !isExpired && !isUsedUp;
+                const isExpired = coupon.expiry && new Date() > coupon.expiry;
+                const isActive = !isExpired;
 
                 return (
                   <tr key={coupon.id} className="hover:bg-white/5 transition-colors">
                     <td className="p-4 font-mono font-bold text-white">{coupon.code}</td>
                     <td className="p-4 text-gray-300 font-mono">
-                      {coupon.type === 'PERCENTAGE' ? `${coupon.value}% OFF` : `${coupon.value} GHS OFF`}
+                      {coupon.discount_type === 'PERCENTAGE' ? `${coupon.value}% OFF` : `${coupon.value} GHS OFF`}
                     </td>
                     <td className="p-4 text-gray-500 font-mono text-sm">
-                      {coupon.times_used} {coupon.max_uses ? `/ ${coupon.max_uses}` : ''}
+                      {coupon.usage_limit ? `Max ${coupon.usage_limit}` : 'Unlimited'}
                     </td>
                     <td className="p-4">
                       <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${isActive ? 'bg-green-500/20 text-green-400 border border-green-500/50' : 'bg-red-500/20 text-red-400 border border-red-500/50'}`}>
-                        {isActive ? 'Active' : 'Inactive'}
+                        {isActive ? 'Active' : 'Expired'}
                       </div>
                     </td>
                   </tr>
