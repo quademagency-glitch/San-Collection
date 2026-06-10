@@ -38,7 +38,8 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
             <nav className="flex flex-col space-y-4">
               <Link href="/account" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Overview</Link>
               <Link href="/account/orders" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Orders</Link>
-              <div className="pt-4 border-t border-glass-border mt-4">
+              <div className="pt-4 border-t border-glass-border mt-4 flex flex-col space-y-4">
+                <Link href="/" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider font-bold">Return to Store</Link>
                 <SignOutButton />
               </div>
             </nav>
