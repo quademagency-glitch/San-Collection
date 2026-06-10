@@ -15,7 +15,7 @@ export default async function AdminOrders() {
           <h1 className="text-2xl font-bold tracking-widest text-white uppercase mb-1">
             Transaction History
           </h1>
-          <p className="text-sm text-gray-400">View all orders across the global network.</p>
+          <p className="text-sm text-gray-400">View all orders across the store.</p>
         </div>
       </div>
 

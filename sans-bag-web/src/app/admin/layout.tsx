@@ -20,11 +20,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-[50px] pointer-events-none"></div>
             <h2 className="text-xl font-bold text-white mb-6 tracking-widest uppercase flex items-center">
               <span className="w-2 h-2 rounded-full bg-red-500 mr-3 animate-pulse"></span>
-              Command Center
+              Admin Dashboard
             </h2>
             <nav className="flex flex-col space-y-4 relative z-10">
               <Link href="/admin" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Overview</Link>
               <Link href="/admin/products" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Inventory</Link>
+              <Link href="/admin/collections" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Collections</Link>
+              <Link href="/admin/discounts" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Discounts</Link>
               <Link href="/admin/orders" className="text-gray-400 hover:text-white transition-colors text-sm uppercase tracking-wider">Transactions</Link>
             </nav>
           </div>

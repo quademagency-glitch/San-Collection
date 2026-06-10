@@ -16,7 +16,7 @@ export default async function AdminDashboard() {
         <h1 className="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-2">
           Operations Overview
         </h1>
-        <p className="text-gray-400">High-level metrics for San's Bag global network.</p>
+        <p className="text-gray-400">High-level metrics for your store.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -31,7 +31,7 @@ export default async function AdminDashboard() {
         </div>
         
         <div className="glass-card p-6 rounded-2xl border border-glass-border">
-          <p className="text-xs text-gold uppercase tracking-widest mb-2 glow-gold">Registered Patrons</p>
+          <p className="text-xs text-gold uppercase tracking-widest mb-2 glow-gold">Customers</p>
           <p className="text-3xl font-mono text-white">{totalUsers}</p>
         </div>
       </div>

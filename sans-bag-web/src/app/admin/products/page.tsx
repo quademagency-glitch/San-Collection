@@ -21,7 +21,7 @@ export default async function AdminProducts() {
           <p className="text-sm text-gray-400">Manage your premium product catalog.</p>
         </div>
         <Link href="/admin/products/new" className="px-6 py-3 bg-white text-black font-bold tracking-widest uppercase text-xs rounded-lg hover:bg-gray-200 transition-colors">
-          + Add Asset
+          + Add Product
         </Link>
       </div>
 
@@ -53,7 +53,7 @@ export default async function AdminProducts() {
                   <td className="p-4 text-gold font-mono">{product.price.toFixed(2)} GHS</td>
                   <td className="p-4 text-gray-300 font-mono">{product.stock} units</td>
                   <td className="p-4">
-                    <button className="text-xs text-neon-cyan hover:text-white uppercase tracking-widest font-bold">Edit</button>
+                    <Link href={`/admin/products/${product.id}/edit`} className="text-xs text-neon-cyan hover:text-white uppercase tracking-widest font-bold">Edit</Link>
                   </td>
                 </tr>
               ))}

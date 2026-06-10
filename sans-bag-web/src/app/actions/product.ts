@@ -14,6 +14,8 @@ export async function createProduct(formData: FormData) {
   const name = formData.get("name") as string;
   const description = formData.get("description") as string;
   const price = parseFloat(formData.get("price") as string);
+  const compareAtPriceRaw = formData.get("compareAtPrice") as string;
+  const compare_at_price = compareAtPriceRaw ? parseFloat(compareAtPriceRaw) : null;
   const stock = parseInt(formData.get("stock") as string, 10);
   const imageUrl = formData.get("imageUrl") as string;
   const categoryId = formData.get("categoryId") as string;
@@ -28,12 +30,48 @@ export async function createProduct(formData: FormData) {
       slug,
       description,
       price,
+      compare_at_price,
       stock,
       images: imageUrl ? [imageUrl] : [],
       category_id: categoryId || null,
       collections: collectionId ? {
         connect: { id: collectionId }
       } : undefined
+    }
+  });
+
+  redirect("/admin/products");
+}
+
+export async function updateProduct(id: string, formData: FormData) {
+  const session = await getServerSession(authOptions);
+  if ((session?.user as any)?.role !== "ADMIN") {
+    throw new Error("Unauthorized");
+  }
+
+  const name = formData.get("name") as string;
+  const description = formData.get("description") as string;
+  const price = parseFloat(formData.get("price") as string);
+  const compareAtPriceRaw = formData.get("compareAtPrice") as string;
+  const compare_at_price = compareAtPriceRaw ? parseFloat(compareAtPriceRaw) : null;
+  const stock = parseInt(formData.get("stock") as string, 10);
+  const imageUrl = formData.get("imageUrl") as string;
+  const categoryId = formData.get("categoryId") as string;
+  const collectionId = formData.get("collectionId") as string;
+
+  await prisma.product.update({
+    where: { id },
+    data: {
+      name,
+      description,
+      price,
+      compare_at_price,
+      stock,
+      images: imageUrl ? [imageUrl] : undefined,
+      category_id: categoryId || null,
+      collections: collectionId ? {
+        set: [{ id: collectionId }]
+      } : { set: [] }
     }
   });
 

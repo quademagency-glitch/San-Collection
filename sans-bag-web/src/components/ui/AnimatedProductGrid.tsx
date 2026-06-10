@@ -44,7 +44,12 @@ export default function AnimatedProductGrid({ products }: { products: Product[] 
             <Link href={`/products/${product.slug}`} className="text-center">
               <h3 className="text-lg font-medium tracking-widest text-foreground group-hover:text-neon-purple transition-colors mb-2">{product.name}</h3>
             </Link>
-            <p className="text-gold font-mono tracking-widest mb-6">{product.price.toFixed(2)} GHS</p>
+            <div className="flex items-center gap-3 mb-6">
+              <p className="text-gold font-mono tracking-widest">{product.price.toFixed(2)} GHS</p>
+              {product.compare_at_price && (
+                <p className="text-gray-500 line-through font-mono text-sm">{product.compare_at_price.toFixed(2)} GHS</p>
+              )}
+            </div>
             
             <div className="w-full z-20">
               <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, image: mainImage }} />

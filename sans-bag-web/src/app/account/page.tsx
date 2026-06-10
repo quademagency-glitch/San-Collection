@@ -29,7 +29,7 @@ export default async function AccountDashboard() {
         <h1 className="text-3xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-2">
           Welcome, {session.user.name || 'Guest'}
         </h1>
-        <p className="text-gray-400">View your digital inventory and physical delivery status.</p>
+        <p className="text-gray-400">View your order history and delivery status.</p>
       </div>
 
       <div className="glass-card p-8 rounded-2xl border border-glass-border shadow-lg relative overflow-hidden">

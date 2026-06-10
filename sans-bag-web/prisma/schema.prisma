@@ -42,6 +42,7 @@ model Product {
   slug        String       @unique
   description String?
   price       Float
+  compare_at_price Float?
   stock       Int          @default(0)
   images      String[]
   category_id String?

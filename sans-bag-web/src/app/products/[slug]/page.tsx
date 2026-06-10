@@ -62,7 +62,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4 uppercase">{product.name}</h1>
-            <p className="text-3xl font-mono text-gold mb-8">{product.price.toFixed(2)} <span className="text-sm text-gray-500">GHS</span></p>
+            <div className="flex items-center gap-4 mb-8">
+              <p className="text-3xl font-mono text-gold">{product.price.toFixed(2)} <span className="text-sm text-gray-500">GHS</span></p>
+              {product.compare_at_price && (
+                <p className="text-xl text-gray-500 line-through font-mono">{product.compare_at_price.toFixed(2)} <span className="text-sm">GHS</span></p>
+              )}
+            </div>
             
             <div className="prose prose-invert mb-10 max-w-none">
               <p className="text-gray-300 leading-relaxed text-lg">{product.description}</p>
